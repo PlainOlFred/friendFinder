@@ -2,7 +2,7 @@ const friendsList =
   [
     {
       friendName: 'Jeremy',
-      friendpic: 'some oics',
+      friendpic: 'http://lorempixel.com/output/people-q-c-200-200-8.jpg',
       scores: [
         3,
         3,
@@ -18,7 +18,7 @@ const friendsList =
     },
      {
       friendName: 'Sally',
-      friendpic: 'some oics',
+      friendpic: 'http://lorempixel.com/output/people-q-c-200-200-9.jpg',
       scores: [
         1,
         1,
@@ -34,7 +34,7 @@ const friendsList =
     },
      {
       friendName: 'Mae',
-      friendpic: 'some oics',
+      friendpic: 'http://lorempixel.com/output/people-q-c-200-200-7.jpg',
       scores: [
         5,
         5,
