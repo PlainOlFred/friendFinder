@@ -37,8 +37,10 @@ const
           console.log(
             matchNumber
           )
+          console.log(friend.friendName)
           if(matchNumber < foundFriendMN) {
-            foundfriend = friend[0];
+            foundFriendMN = matchNumber;
+            foundFriend = friend;
           } 
         }
 
