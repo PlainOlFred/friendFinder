@@ -1,7 +1,12 @@
 const
   friendsList = require('../data/friends');
 
-  module.exports = function(app) {
+let 
+  foundFriend = {};
+
+  
+    
+const friendFinderApiRoute = function(app) {
 
     /*API Route handles*/
     app.route('/api/friends')
@@ -14,8 +19,8 @@ const
         /*Finding friend */
         let 
           searchingFriend = req.body,
-          foundFriendMN = 100,
-          foundFriend;
+          foundFriendMN = 100;
+         
           
 
         searchingFriend.scores = searchingFriend.scores.map(function(score) { 
@@ -38,6 +43,7 @@ const
             matchNumber
           )
           console.log(friend.friendName)
+
           if(matchNumber < foundFriendMN) { //find the lowest diff
             foundFriendMN = matchNumber;
             foundFriend = friend;
@@ -48,4 +54,9 @@ const
         console.log(foundFriend);
         res.json(friendsList);
       });
+  }
+  module.exports = {
+    friendFinderApiRoute,
+    foundFriend
+  
   }
