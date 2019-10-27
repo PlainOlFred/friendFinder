@@ -4,48 +4,48 @@ const friendsList =
       friendName: 'Jeremy',
       friendpic: 'some oics',
       scores: [
-        2,
-        5,
         3,
         3,
-        2,
-        5,
         3,
-        4,
-        5,
-        2
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
         ]
     },
      {
       friendName: 'Sally',
       friendpic: 'some oics',
       scores: [
-        2,
-        4,
-        5,
-        2,
-        2,
-        2,
-        5,
-        3,
-        5,
-        3
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
         ]
     },
      {
       friendName: 'Mae',
       friendpic: 'some oics',
       scores: [
-        2,
-        2,
-        2,
         5,
-        3,
-        4,
         5,
-        2,
         5,
-        3
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
       ]
     }
       
