@@ -18,11 +18,6 @@ require('./routing/htmlRoutes')(app);
   
 
 
-app.route('/api/friends')
-  .get()
-  .post((req,res) => {
-    console.log(req.body)
 
-  });
 
 app.listen(PORT, () => console.log(`App listneing on http://localhost:${PORT}/`));
