@@ -13,6 +13,10 @@ const path = require('path');
     app.route('/survey')
       .get((req, res) => {
         res.sendFile(path.join(__dirname,'../public/survey.html'));
+      })
+      .post((req, res) => {
+
+        
       });
    
   }
