@@ -1,20 +1,19 @@
 const
-  path = require('path');
+  path = require('path'),
+  friendsList = require('../data/friends');
 
   module.exports = function(app) {
 
-    /*Home Route*/
-    app.route('/')
+    /*API Route handles*/
+    app.route('/api/friendsList')
       .get((req, res) => {
-        res.sendFile(path.join(__dirname, './app/public/home.html'));
-
+        res.json(friendsList);
       })
 
+      .post((req, res) => {
+        friendsList.push(friendsList);
+        res.json(friendsList);
+      }
 
-    /*Survey Route*/
-    app.route('/survey')
-      .get((req, res) => {
-        res.sendFile(path.join(__dirname,'./app/public/survey.html'));
-      });
-   
+
   }
