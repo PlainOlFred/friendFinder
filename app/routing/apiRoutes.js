@@ -38,7 +38,7 @@ const
             matchNumber
           )
           console.log(friend.friendName)
-          if(matchNumber < foundFriendMN) {
+          if(matchNumber < foundFriendMN) { //find the lowest diff
             foundFriendMN = matchNumber;
             foundFriend = friend;
           } 
