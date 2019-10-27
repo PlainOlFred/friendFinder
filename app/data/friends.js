@@ -1,8 +1,9 @@
 const friendsList =
   [
+    
     {
-      friendName: 'Jeremy',
-      friendpic: 'http://lorempixel.com/output/people-q-c-200-200-8.jpg',
+      friendName: 'Devo',
+      friendPic: 'http://lorempixel.com/output/people-q-c-200-200-3.jpg',
       scores: [
         3,
         3,
@@ -15,10 +16,12 @@ const friendsList =
         3,
         3
         ]
+
     },
+
      {
       friendName: 'Sally',
-      friendpic: 'http://lorempixel.com/output/people-q-c-200-200-9.jpg',
+      friendPic: 'http://lorempixel.com/output/people-q-c-200-200-9.jpg',
       scores: [
         1,
         1,
@@ -34,7 +37,7 @@ const friendsList =
     },
      {
       friendName: 'Mae',
-      friendpic: 'http://lorempixel.com/output/people-q-c-200-200-7.jpg',
+      friendPic: 'http://lorempixel.com/output/people-q-c-200-200-8.jpg',
       scores: [
         5,
         5,
