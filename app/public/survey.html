@@ -154,14 +154,46 @@
             <input type="range" min="1" max="5" class="form-control-range" id="survey-ques-10">
           </div></div>
 
-          <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn" data-toggle="modal" data-target="#friend-modal">Submit</button>
         </form>
       </div></div>
       
     </div>
 
     
-     </body>
+    <!-- Friend Modal -->
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+  <div class="modal fade" id="friend-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Friend Match</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body">
+            <h1 id="friend-modal-name">Hi</h1>
+
+            <div class="row my-4"><div class="col-md-12">
+        
+            
+            <img id="friend-modal-img">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="friend-modal-scores">Scores</button>
+        </div>
+      </div>
+    </div>
+    </div>   
+  </body>
 </html>
 
 
@@ -169,47 +201,84 @@
     
 
     $("#submit-btn").on('click', function(event) {
-      console.log('button pressed');
     event.preventDefault();
 
+     console.log('button pressed');
+     let 
+     friendName = $("#survey-ques-name").val().trim(),
+     friendPic = $("#survey-ques-pic").val().trim();
 
-    let newFriend = {
-      friendName: $("#survey-ques-name").val().trim(),
-      friendpic: $("#survey-ques-pic").val().trim(),
-      scores: [
-        $("#survey-ques-1").val(),
-        $("#survey-ques-2").val(),
-        $("#survey-ques-3").val(),
-        $("#survey-ques-4").val(),
-        $("#survey-ques-5").val(),
-        $("#survey-ques-6").val(),
-        $("#survey-ques-7").val(),
-        $("#survey-ques-8").val(),
-        $("#survey-ques-9").val(),
-        $("#survey-ques-10").val(),
-        ]
-      
-    };
+     if(friendName && friendPic) {
+       
+     
+      let newFriend = {
+        friendName,
+        friendPic,
+        scores: [
+          $("#survey-ques-1").val(),
+          $("#survey-ques-2").val(),
+          $("#survey-ques-3").val(),
+          $("#survey-ques-4").val(),
+          $("#survey-ques-5").val(),
+          $("#survey-ques-6").val(),
+          $("#survey-ques-7").val(),
+          $("#survey-ques-8").val(),
+          $("#survey-ques-9").val(),
+          $("#survey-ques-10").val(),
+          ]
+        
+      };
 
-    
     
   
-  $.post('/api/friends', newFriend,
-    function(data) {
-      
-        $("#survey-ques-name").val('');
-        $("#survey-ques-pic").val('');
-        $("#survey-ques-1").val(3);
-        $("#survey-ques-2").val(3);
-        $("#survey-ques-3").val(3);
-        $("#survey-ques-4").val(3);
-        $("#survey-ques-5").val(3);
-        $("#survey-ques-6").val(3);
-        $("#survey-ques-7").val(3);
-        $("#survey-ques-8").val(3);
-        $("#survey-ques-9").val(3);
-        $("#survey-ques-10").val(3);
-        
-    });
+      $.post('/api/friends',  
+        newFriend,
+        function(data) {
+          
+            $("#survey-ques-name").val('');
+            $("#survey-ques-pic").val('');
+            $("#survey-ques-1").val(3);
+            $("#survey-ques-2").val(3);
+            $("#survey-ques-3").val(3);
+            $("#survey-ques-4").val(3);
+            $("#survey-ques-5").val(3);
+            $("#survey-ques-6").val(3);
+            $("#survey-ques-7").val(3);
+            $("#survey-ques-8").val(3);
+            $("#survey-ques-9").val(3);
+            $("#survey-ques-10").val(3);
+            
+        });
+
+        /* Friend-Modal trigger*/
+        $('#friend-modal').on('shown.bs.modal', function () {
+          $('#myInput').trigger('focus')
+        })
+
+        $('#friend-modal-name').empty();
+        $('#friend-modal-image').empty();
+
+        $('#friend-modal-name').text(friendName);
+        $('#friend-modal-image').attr({
+            src : cover,
+            style: 'height: 150px; position : absolute; top : 0px; right: 0px'
+        })
+
+
+
+    } else {
+      /* No-inupt Modal trigger*/
+      $('#friend-modal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
+      $('#friend-modal-image').empty();
+      $('#friend-modal-name').text('Compelete Form')
+
+    }
   });
+
+  console.log('modal clicked')
+    
+   
 </script>
+
