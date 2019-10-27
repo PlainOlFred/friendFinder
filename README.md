@@ -23,7 +23,7 @@
 
 - [X] Match friend with smallest difference in score
 
-- [] Display matched friend
+- [ ] Display matched friend
 
 - [X] Add new friend to table
 
