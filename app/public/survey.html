@@ -179,11 +179,8 @@
         </div>
         <div class="modal-body">
           <div class="modal-body">
-            <h1 id="friend-modal-name">Hi</h1>
-
-            <div class="row my-4"><div class="col-md-12">
-        
-            
+            <h1 id="friend-modal-name"></h1>
+            <!-- <img id="friend-modal-img" src="http://lorempixel.com/output/people-q-c-200-200-5.jpg"> -->
             <img id="friend-modal-img">
           </div>
         </div>
@@ -195,9 +192,25 @@
     </div>   
   </body>
 </html>
-
-
+  <!-- import bundle  -->
+  <script src="bundle.js"></script>
   <script type="text/javascript">
+    let foundFriend = {
+      friendName: 'Jeremy',
+      friendPic: 'http://lorempixel.com/output/people-q-c-200-200-8.jpg',
+      scores: [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+        ]
+    };
     
 
     $("#submit-btn").on('click', function(event) {
@@ -234,7 +247,7 @@
       $.post('/api/friends',  
         newFriend,
         function(data) {
-          
+            // reset form
             $("#survey-ques-name").val('');
             $("#survey-ques-pic").val('');
             $("#survey-ques-1").val(3);
@@ -255,14 +268,13 @@
           $('#myInput').trigger('focus')
         })
 
-        $('#friend-modal-name').empty();
-        $('#friend-modal-image').empty();
+       
 
-        $('#friend-modal-name').text(friendName);
-        $('#friend-modal-image').attr({
-            src : cover,
-            style: 'height: 150px; position : absolute; top : 0px; right: 0px'
-        })
+        $('#friend-modal-name').empty();
+        $('#friend-modal-img').empty();
+
+        $('#friend-modal-name').text(foundFriend.friendName);
+        $('#friend-modal-img').attr("src", foundFriend.friendPic);
 
 
 
