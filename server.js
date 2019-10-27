@@ -1,23 +1,16 @@
 const 
-  express = require('express'),
-  path = require('path');
-
-const
+  express = require("express"),
   app = express();
-  PORT = process.env.portt || 3500;
+
+const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
-/*Api Route and HTML route*/
-require('./routing/apiRoutes')(app);
-require('./routing/htmlRoutes')(app);
-
-  
-
-
-
-
-app.listen(PORT, () => console.log(`App listneing on http://localhost:${PORT}/`));
+app.listen(PORT, function() {
+  console.log(`http://localhost:${PORT}`)
+});
