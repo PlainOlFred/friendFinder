@@ -1,5 +1,4 @@
 const
-  path = require('path'),
   friendsList = require('../data/friends');
 
   module.exports = function(app) {
@@ -13,7 +12,7 @@ const
       .post((req, res) => {
         friendsList.push(friendsList);
         res.json(friendsList);
-      }
+      })
 
 
   }
