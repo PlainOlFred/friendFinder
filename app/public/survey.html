@@ -8,6 +8,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <title>Friend Survey</title>
     <style>
       .ansChoices {
@@ -22,16 +28,15 @@
 
      <!-- Survey Form -->
       <div class="row"><div class="col-md-8 offset-md-2">
-        <form  action="/api/friends" method="POST">
           <div class="row"><div class="col-md-12"><h3>About You</h3></div></div>
           <div class="form-group">
             <label for="user-name">Name</label>
-            <input type="text" class="form-control" id="user-name"  placeholder="Name">
+            <input type="text" class="form-control" id="survey-ques-name"  placeholder="Name">
             <small id="user-name-help" class="form-text text-muted">The name you would like our new friend to see</small>
           </div>
           <div class="form-group">
             <label for="user-pic">Profile Pic</label>
-            <input type="text" class="form-control" id="user-pic" placeholder="Pic URL">
+            <input type="text" class="form-control" id="survey-ques-pic" placeholder="Pic URL">
             <small id="user-name-help" class="form-text text-muted">The picture you would like our new friend to see</small>
           </div>
 
@@ -149,16 +154,62 @@
             <input type="range" min="1" max="5" class="form-control-range" id="survey-ques-10">
           </div></div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
         </form>
       </div></div>
       
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    
+     </body>
 </html>
+
+
+  <script type="text/javascript">
+    
+
+    $("#submit-btn").on('click', function(event) {
+      console.log('button pressed');
+    event.preventDefault();
+
+
+    let newFriend = {
+      friendName: $("#survey-ques-name").val().trim(),
+      friendpic: $("#survey-ques-pic").val().trim(),
+      scores: [
+        $("#survey-ques-1").val(),
+        $("#survey-ques-2").val(),
+        $("#survey-ques-3").val(),
+        $("#survey-ques-4").val(),
+        $("#survey-ques-5").val(),
+        $("#survey-ques-6").val(),
+        $("#survey-ques-7").val(),
+        $("#survey-ques-8").val(),
+        $("#survey-ques-9").val(),
+        $("#survey-ques-10").val(),
+        ]
+      
+    };
+
+    
+    
+  
+  $.post('/api/friends', newFriend,
+    function(data) {
+      
+        $("#survey-ques-name").val().trim('');
+        $("#survey-ques-pic").val().trim('');
+        $("#survey-ques-1").val(3);
+        $("#survey-ques-2").val(3);
+        $("#survey-ques-3").val(3);
+        $("#survey-ques-4").val(3);
+        $("#survey-ques-5").val(3);
+        $("#survey-ques-6").val(3);
+        $("#survey-ques-7").val(3);
+        $("#survey-ques-8").val(3);
+        $("#survey-ques-9").val(3);
+        $("#survey-ques-10").val(3);
+        
+    });
+  });
+</script>
