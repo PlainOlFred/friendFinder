@@ -259,7 +259,11 @@
           $('#friend-modal-img').empty();
 
           $('#friend-modal-name').text(match.friendName);
-          $('#friend-modal-img').attr("src", `${match.friendPic}`);
+          $('#friend-modal-img')
+            .attr({
+                src: match.friendPic,
+                style: 'height: 200px; width: 200px'
+              });
             
           })
 
