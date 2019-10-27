@@ -10,14 +10,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.get(`/`, (req, res) => {
-  res.sendFile(path.join(__dirname, './app/public/home.html'));
 
-})
+/*Api Route and HTML route*/
+require('./routing/apiRoutes')(app);
+require('./routing/htmlRoutes')(app);
 
-  app.get(`/survey`, (req, res) => {
-  res.sendFile(path.join(__dirname,'./app/public/survey.html'));
+  
 
-})
+
+app.route('/api/friends')
+  .get()
+  .post((req,res) => {
+    console.log(req.body)
+
+  });
 
 app.listen(PORT, () => console.log(`App listneing on http://localhost:${PORT}/`));
