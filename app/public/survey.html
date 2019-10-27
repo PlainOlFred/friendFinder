@@ -192,38 +192,19 @@
     </div>   
   </body>
 </html>
-  <!-- import bundle  -->
-  <script src="bundle.js"></script>
+       
   <script type="text/javascript">
-    let foundFriend = {
-      friendName: 'Jeremy',
-      friendPic: 'http://lorempixel.com/output/people-q-c-200-200-8.jpg',
-      scores: [
-        3,
-        3,
-        3,
-        3,
-        3,
-        3,
-        3,
-        3,
-        3,
-        3
-        ]
-    };
     
-
     $("#submit-btn").on('click', function(event) {
     event.preventDefault();
 
-     console.log('button pressed');
+     
      let 
      friendName = $("#survey-ques-name").val().trim(),
      friendPic = $("#survey-ques-pic").val().trim();
 
      if(friendName && friendPic) {
        
-     
       let newFriend = {
         friendName,
         friendPic,
@@ -242,8 +223,6 @@
         
       };
 
-    
-  
       $.post('/api/friends',  
         newFriend,
         function(data) {
@@ -268,13 +247,59 @@
           $('#myInput').trigger('focus')
         })
 
-       
 
-        $('#friend-modal-name').empty();
-        $('#friend-modal-img').empty();
 
-        $('#friend-modal-name').text(foundFriend.friendName);
-        $('#friend-modal-img').attr("src", foundFriend.friendPic);
+        $.ajax({url: 'api/friends', method: 'GET'})
+          .then(function(friendList) { 
+           
+          let match = friendFinder(friendList, friendList[friendList.length - 1].scores); //last element is the new user
+          console.log(`match: ${match.friendName}`);
+
+          $('#friend-modal-name').empty();
+          $('#friend-modal-img').empty();
+
+          $('#friend-modal-name').text(match.friendName);
+          $('#friend-modal-img').attr("src", `${match.friendPic}`);
+            
+          })
+
+        
+
+      let 
+    foundFriendMN = 100,
+    foundFriend = {};
+
+    function friendFinder(friendList, user) {
+     
+      user = user.map(function(score) { 
+      return Number.parseInt(score);
+    })
+            
+    for(let friend of friendList) {
+      let matchNumber = 0; //sum of difference
+      let i = 0; //to iterate over searchingFriend scores
+     
+      
+      for(let score of friend.scores) {
+    
+    
+        let diff = Math.abs(Number.parseInt(user) - score)
+        matchNumber += diff;
+        
+        i++;
+      }
+      
+      
+
+      if(matchNumber < foundFriendMN) { //find the lowest diff
+        foundFriendMN = matchNumber;
+        foundFriend = friend;
+      } 
+
+      }
+
+      return foundFriend;
+    }
 
 
 
@@ -289,7 +314,7 @@
     }
   });
 
-  console.log('modal clicked')
+  
     
    
 </script>
