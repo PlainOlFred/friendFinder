@@ -44,8 +44,6 @@ const
           } 
         }
 
-
-
         friendsList.push(searchingFriend);
         console.log(foundFriend);
         res.json(friendsList);
