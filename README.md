@@ -23,7 +23,7 @@
 
 - [X] Match friend with smallest difference in score
 
-- [] Display matched friend
+- [ ] Display matched friend
 
 - [X] Add new friend to table
 
@@ -39,21 +39,15 @@
 
 ### Usage
 .
-  1. Intialize package.json `$ npm init -y`
-
-  2. Install node packages 
-   
-  4. Use snippets from `bamazon.sql` to create `bamazon` database.
+  1. Navigate to [APP](https://ancient-lake-73417.herokuapp.com/) 
   
-  5. Node commmands
-     - Customer View:
-          - `$ node bamazonCustomer.js`
-     - Manager View:
-          - `$ node bamazonManger.js`
-     - Supervisor View:
-          - `$ node bamazonSupervisor.js`
-  6. Follow Command Prompts
+  2. Click on Take Survey to Navigate to [survey page](https://ancient-lake-73417.herokuapp.com/survey) 
   
- ### Demo
-
+  3. Enter name and profile picture url
+  
+  4. Answer the ten survery questions by adjusting the slider for each question
+  
+  5. Click submit
+  
+  6. On Home page use the dropdown menu to navigate to [api dat](https://ancient-lake-73417.herokuapp.com/api/friends) and this Github Repository
 
