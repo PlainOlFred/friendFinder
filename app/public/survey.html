@@ -184,11 +184,10 @@
               <div class="collapse" id="collapseScoreCard">
                 <h5>Differences the higher number the higher the difference </h5>
                 <ol class="list-group" id="scoreCard"></ol>
-                <!-- <div class="card card-body">
-                </div> -->
+                
               </div>
               
-              <!-- <div id="scoreCard"></div> -->
+              <=
               
             </div>
           </div>
@@ -290,12 +289,11 @@
           let match = friendFinder(friendList); //last element is the new user
           console.log(`match: ${match.friendName}`);
           console.log(`match diff: ${match.differences}`);
-
+          
+          /*Create Score Cards to show differences*/
            $('#scoreCard').empty(); //clear scorecard
           match.differences.map(function(val, index) {
-
             createScoredCard(val, index)
-            
           })
 
           // match.differences.reduce(function(acc,val) {
@@ -321,7 +319,7 @@
 
     function friendFinder(friendList) {
       let user = friendList.pop(); //remove last element and sets as user
-      console.log(user)
+      
      
       userScores = user.scores.map(function(score) { 
         return Number.parseInt(score);
@@ -329,7 +327,7 @@
             
     for(let friend of friendList) {
       let 
-        matchNumber = 0, //sum of difference
+        matchNumber = 0, //sum of differences
         differences = [], //to track diff for each question
         i=0; 
        
@@ -353,10 +351,8 @@
       } 
       friend.differences = differences; 
     }
-      console.log(foundFriend)
       
       return foundFriend;
-
     }
 
 
@@ -371,10 +367,6 @@
 
     }
   });
-
-
   
-    
-   
 </script>
 
