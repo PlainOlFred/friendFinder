@@ -50,6 +50,8 @@
   4. Answer the ten survery questions by adjusting the slider for each question
   
   5. Click submit
+
+  6. Your match will appear. You can click on "Differecnes" button to display differences for each question.
   
-  6. On Home page use the dropdown menu to navigate to [api dat](https://ancient-lake-73417.herokuapp.com/api/friends) and this Github Repository
+  7. On Home page use the dropdown menu to navigate to [api dat](https://ancient-lake-73417.herokuapp.com/api/friends) and this Github Repository
 
