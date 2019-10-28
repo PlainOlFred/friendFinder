@@ -164,6 +164,8 @@
     </div>
 
     
+
+    
     <!-- Friend Modal -->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -178,10 +180,23 @@
             <div class="modal-body">
               <h1 id="friend-modal-name"></h1>
               <img id="friend-modal-img">
+              <!-- Collaspe scorcard -->
+              <div class="collapse" id="collapseScoreCard">
+                <h5>Differences the higher number the higher the difference </h5>
+                <ol class="list-group" id="scoreCard"></ol>
+                <!-- <div class="card card-body">
+                </div> -->
+              </div>
+              
+              <!-- <div id="scoreCard"></div> -->
+              
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="friend-modal-scores">Scores</button>
+            <!-- <button type="button" class="btn btn-secondary" id="friend-modal-scores">Differences</button> -->
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseScoreCard" aria-expanded="false" aria-controls="collapseExample">
+              Differences
+            </button>
           </div>
         
         </div>
@@ -193,6 +208,27 @@
 </html>
        
   <script type="text/javascript">
+
+
+  /*Creat Scorecard*/
+  const 
+    quesBank = {
+      ques0: 'You talk more than listen',
+      ques1: 'You talk more than listen',
+      ques2: 'You are needy for attention',
+      ques3: 'You believe Batman is a better super heros than Spiderman',
+      ques4: 'You like dogs more than cat',
+      ques5: 'People who talk too much bother you',
+      ques6: 'People who smoke bother you',
+      ques7: 'People with childern or pets bother you',
+      ques8: 'People who do not share the same interest bother you',
+      ques9: 'People in general bother you',
+    },
+    createScoredCard = function(val, i) {
+     
+      $('<li>', {html: quesBank[`ques${i}`] + ': ' + val}).appendTo($('#scoreCard'))
+      
+    }
     
     $("#submit-btn").on('click', function(event) {
     event.preventDefault();
@@ -251,8 +287,21 @@
         $.ajax({url: 'api/friends', method: 'GET'})
           .then(function(friendList) { 
            
-          let match = friendFinder(friendList, friendList[friendList.length - 1].scores); //last element is the new user
+          let match = friendFinder(friendList); //last element is the new user
           console.log(`match: ${match.friendName}`);
+          console.log(`match diff: ${match.differences}`);
+
+           $('#scoreCard').empty(); //clear scorecard
+          match.differences.map(function(val, index) {
+
+            createScoredCard(val, index)
+            
+          })
+
+          // match.differences.reduce(function(acc,val) {
+          //   $('<li>', {html: val}).appendTo(acc)
+          // },$('<ol class="list-group">'))
+          
 
           $('#friend-modal-name').empty();
           $('#friend-modal-img').empty();
@@ -261,47 +310,53 @@
           $('#friend-modal-img')
             .attr({
                 src: match.friendPic,
-                style: 'height: 200px; width: 200px'
+                style: 'height: 200px; width: 200px; marigin: 5px'
               });
             
-          })
+          })   
 
-        
+    let 
+      foundFriendMN = 100,
+      foundFriend = {};
 
-      let 
-    foundFriendMN = 100,
-    foundFriend = {};
-
-    function friendFinder(friendList, user) {
+    function friendFinder(friendList) {
+      let user = friendList.pop(); //remove last element and sets as user
+      console.log(user)
      
-      user = user.map(function(score) { 
-      return Number.parseInt(score);
-    })
+      userScores = user.scores.map(function(score) { 
+        return Number.parseInt(score);
+      })
             
     for(let friend of friendList) {
-      let matchNumber = 0; //sum of difference
-      let i = 0; //to iterate over searchingFriend scores
+      let 
+        matchNumber = 0, //sum of difference
+        differences = [], //to track diff for each question
+        i=0; 
+       
      
       
       for(let score of friend.scores) {
-    
-    
-        let diff = Math.abs(Number.parseInt(user) - score)
+       
+        let diff = Math.abs(Number.parseInt(userScores[i]) - score);
+
+        differences.push(diff);
+
         matchNumber += diff;
-        
-        i++;
+        i++; 
       }
       
-      
-
       if(matchNumber < foundFriendMN) { //find the lowest diff
-        foundFriendMN = matchNumber;
-        foundFriend = friend;
+      
+          foundFriendMN = matchNumber;
+          foundFriend = friend;
+    
       } 
-
-      }
-
+      friend.differences = differences; 
+    }
+      console.log(foundFriend)
+      
       return foundFriend;
+
     }
 
 
@@ -316,6 +371,7 @@
 
     }
   });
+
 
   
     
