@@ -154,7 +154,10 @@
             <input type="range" min="1" max="5" class="form-control-range" id="survey-ques-10">
           </div></div>
 
-          <button type="submit" class="btn btn-primary" id="submit-btn" data-toggle="modal" data-target="#friend-modal">Submit</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn" data-toggle="modal" data-target=".bd-example-modal-lg">Submit</button>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=">Large modal</button> -->
+
+
         </form>
       </div></div>
       
@@ -162,34 +165,30 @@
 
     
     <!-- Friend Modal -->
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
-<!-- Modal -->
-  <div class="modal fade" id="friend-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Friend Match</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-body">
-            <h1 id="friend-modal-name"></h1>
-            <!-- <img id="friend-modal-img" src="http://lorempixel.com/output/people-q-c-200-200-5.jpg"> -->
-            <img id="friend-modal-img">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myLargeModalLabel">Friend Match</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="friend-modal-scores">Scores</button>
+          <div class="modal-body">
+            <div class="modal-body">
+              <h1 id="friend-modal-name"></h1>
+              <img id="friend-modal-img">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="friend-modal-scores">Scores</button>
+          </div>
+        
         </div>
       </div>
     </div>
-    </div>   
+
+      
   </body>
 </html>
        
